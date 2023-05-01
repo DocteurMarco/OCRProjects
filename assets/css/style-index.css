@@ -25,18 +25,19 @@ body {
 a {
     text-decoration: none;
 }
-
+/* chargement du loader à l'ouverture de la page d'accueil */
 .loader {
     background-color: #FFFFFF;
-    background-size: cover;
-    background-position: center;
     display: flex;
     width: 100% ;
     height: 100% ;
     justify-content: center;
     align-items: center;
+    position:fixed; /*positionnement fixe au centre de la page de démarrage*/
+    top: 0;
+    left:0;
 
-    animation: loader-none 200ms forwards;
+    animation: loader-none 200ms forwards; /*disparition de la section du loader avec l'apparition du body*/
     animation-delay: 3s;
 }
 
@@ -55,7 +56,7 @@ a {
 header, main, footer {
     visibility: collapse;
     
-    animation: loading-body 200ms forwards;
+    animation: loading-body 200ms forwards;/*la page devient visible après le délai de 3s du lancement du loader*/
     animation-delay: 3s;
 }
 
@@ -79,13 +80,13 @@ header, main, footer {
     }
 }
 
-/* caractéristiques de l'animation pour la disparition du loader avec l'apparition du body */
+/* caractéristiques de l'animation pour la disparition de la section du loader avec l'apparition du body */
 @keyframes loader-none {
     from {
-        display: flex;
+        height: 100%;
     }
     to {
-        display: none;
+        height: 0%;
     }
 }
 
@@ -104,13 +105,13 @@ header {
     align-items: center;
     background: #FFFFFF;
     position:relative;
-    top: 4px;
+    top: 4px; /*le logo est relevé pour la visualisation de la bordure basse ombragée*/
     box-shadow : 0px 2px 4px rgba(0,0,0,.15);
     width: 100%;
 }
 header img {
-    width: 45%;
-    margin-top: 20px;
+    width: 162px;
+    margin-top: 10px;
     margin-bottom: 10px;
     object-fit: cover;
 }
@@ -187,7 +188,7 @@ nav p {
     margin-bottom: 30px;
     padding: 13px 19px;
     cursor: pointer;
-    opacity: 1;
+    
     transition: all 0.7s ease;
 }
  
@@ -275,7 +276,7 @@ nav p {
 .btn-choice i:hover { /* changement de couleur au survol des icones de fonctionnement */
     color: #9356DC;
 }
-.btn-choice h3 {
+.btn-choice p {
     font-family: 'Roboto', sans-serif;
     color: #000000;
     font-size: 16px;
@@ -407,7 +408,7 @@ a img {
     bottom: 30px;
     cursor: pointer;
     z-index: 2;
-    opacity: 0;
+    opacity: 0; /*le coeur coloré est invisible au dessus du coeur blanc*/
     transition: opacity 0.7s;
 }
 
@@ -431,6 +432,11 @@ footer {
     font-style: italic;
     font-weight: 400;
     padding: 25px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
 }
 
 .ustensils,
@@ -458,7 +464,7 @@ footer {
 .handshake i {
     color: #FFFFFF;
     font-size: 13px; 
-    position: absolute;
+    position: absolute; /*calage des icones dans le footer*/
     left: 25px; 
 
 }
@@ -487,6 +493,125 @@ footer {
     padding-bottom: 5px;
 }
 
+/*media-queries pour Tablette*/
+
+@media screen and (min-width:768px) and (max-width: 1023px){
+
+    body {
+        max-width: 1023px;
+    }
+
+    header img {
+        width: 200px;
+    }
+
+    .explore {
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+
+    .order {
+        padding: 30px 100px 45px 100px;
+        margin-bottom: 0px;
+    }
+
+    .restaurant {
+        padding: 30px 100px 30px 100px;
+    }
+
+    .restaurant h2 {
+        margin-top: 0px;
+    }
+    .card-all {
+        flex-direction: row;
+        flex-wrap:wrap;
+    }
+
+    .card-indiv {
+        width: 47%;
+    }
+    .choice {
+        flex-direction: row;
+    }
+
+    footer {
+        flex-direction: row-reverse;
+        align-items: center;
+        padding-top: 40px;
+    }
+
+    .links {
+        flex-direction: row;
+    }
+
+    .logo-white {
+        padding: 0px 50px;
+    }
+
+    .ustensils, .handshake, .legal, .contact {
+        padding-bottom: 0px;
+    }
+}
+
+/*media-queries pour desktop*/
+
+@media screen and (min-width: 1024px) and (max-width: 1400px) {
+
+    body {
+        max-width: 1400px;
+    }
+
+    header img {
+        width: 200px;
+    }
+
+    .explore {
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+
+    .order {
+        padding: 30px 150px 45px 150px;
+        margin-bottom: 0px;
+    }
+
+    .restaurant {
+        padding: 30px 150px 30px 150px;
+    }
+
+    .restaurant h2 {
+        margin-top: 0px;
+    }
+    .card-all {
+        flex-direction: row;
+        flex-wrap:wrap;
+    }
+
+    .card-indiv {
+        width: 47%;
+    }
+    .choice {
+        flex-direction: row;
+    }
+
+    footer {
+        flex-direction: row-reverse;
+        align-items: center;
+        padding-top: 40px;
+    }
+
+    .links {
+        flex-direction: row;
+    }
+
+    .logo-white {
+        padding: 0px 50px;
+    }
+
+    .ustensils, .handshake, .legal, .contact {
+        padding-bottom: 0px;
+    }
+}
 
 
 

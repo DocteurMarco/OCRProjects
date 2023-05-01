@@ -16,7 +16,7 @@ Textes: font-family: 'Roboto', sans-serif;
 */
 
 body {
-    margin: 0;
+    margin: 0 auto;
     max-width: 767px;
 }
 
@@ -45,7 +45,7 @@ a i {
 }
 
 header img {
-    width: 45%;
+    width: 162px;
     margin-top: 20px;
     margin-bottom: 15px;
     object-fit: cover;
@@ -72,13 +72,12 @@ main {
 /* card de chaque restaurant */
 
 .card {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
     background: #F7F7F7;
     border-radius: 40px 40px 0px 0px;
-    margin: 0px;
-    height: 1020px;
-    position: relative;
-    top: -50px;
+    margin: -35px 0px 0px 0px; /*la section remonte sur la photo*/
+    padding-bottom: 15px;
 }
 
 .heading {
@@ -116,7 +115,7 @@ h1 {
     bottom: 7px;
     cursor: pointer;
     z-index: 2;
-    opacity: 0;
+    opacity: 0; /*le coeur coloré est invisible au dessus du coeur blanc*/
     transition: opacity 0.7s;
 }
 
@@ -126,7 +125,7 @@ h1 {
 
 /* Plate : Entrées Plats Desserts */
 
-.plate {
+.plate1, .plate2, .plate3 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -135,6 +134,40 @@ h1 {
     padding: 0px 13px;
     margin:0;
     width: 100%;
+    opacity: 0;
+    transform: scale(0);
+}
+
+/*animation avec découverte progressive des propositions de menu*/
+
+@keyframes discover {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.plate1 {
+    transform-origin: top;
+    animation: discover 1s forwards;
+    animation-delay: 0s;
+}
+
+.plate2 {
+    transform-origin: top;
+    animation: discover 1s forwards;
+    animation-delay: 2s;
+}
+
+
+.plate3 {
+    transform-origin: top;
+    animation: discover 1s forwards;
+    animation-delay: 4s;
 }
 
 h2 {
@@ -156,12 +189,12 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px; 
-    width: 100%;
+    width: 96%;
 }
 
-h2::after {
+h2::after { /*soulignage des titres h2, entrées etc, sur une longueur partielle de 40px*/
     content:'';
     display: block;
     background: #99E2D0;
@@ -175,21 +208,21 @@ h2::after {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
     background-color: #FFFFFF;
     border-radius: 15px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     padding: 0px 15px;
-    width: 90%;
+    width: 100%;
     overflow: hidden;
-    position: relative;
+    box-sizing: border-box;
 }
 
 .choice {
-
+    flex-basis: 100%; /* le texte va être poussé par .price*/
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    /*width: -80px;*/
 }
 
 h3 {
@@ -200,7 +233,7 @@ h3 {
     font-size: 18px;
     color: #000000;
     margin: 12px 0px 3px 0px;
-    text-overflow: ellipsis;        /* le tronquage ne fonctionne pas */
+    text-overflow: ellipsis;       
     overflow: hidden;
     white-space: nowrap; 
 }
@@ -214,26 +247,22 @@ h3 {
     font-size: 15px;
     color: #000000;
     margin: 3px 0px 12px 0px;
-    text-overflow: ellipsis;    /* le tronquage ne fonctionne pas */
+    text-overflow: ellipsis; 
     overflow: hidden;
     white-space: nowrap; 
 }
 
-.price { /*modif ajout padding-bottom sur p*/
+.price {
     display: flex;
-    flex-direction: column;
-    justify-content:flex-end;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 15px;
     color: #000000;
-    margin:0;
-    position: absolute;
-    right: 13px;
-    bottom: 12px;
+    margin-top: 28px;
+    margin-right: 10px;
 }
-
+/*création du pavé vert de validation-caché en l'absence de survol*/
 .valid {  
     display: flex;
     justify-content: center;
@@ -242,7 +271,8 @@ h3 {
     width: 60px;
     height: 68px;
     border-radius: 0px 15px 15px 0px;
-    margin-right: -80px;
+    margin-right: -75px; /*pavé caché*/
+    transition-duration: .5s;
 }
 
 .valid i {
@@ -253,45 +283,21 @@ h3 {
     border-radius: 50%;
     padding: 3px;
 }
+/* animations de la validation du plat dans le menu - apparition de l'icône de validation sur fond vert*/
 
-@keyframes validation {
-    from {
-        margin-right: -80px;
-        margin-left: 0px;
-    }
-    to {
-        margin-right: -15px;
-        margin-left: 60px;
-    }
-}
-
-@keyframes price {
-    from {
-        right: 13px;   
-    }
-    to {
-        right: 65px;
-    }
-}
 .menu:hover .valid {
-    animation: validation 3s;
+    margin: -15px;
 }
 
-.menu:hover .price {
-    animation: price 3s;
-}
+/* Commander*/
 
-*/
-
-/* Commander */
-
-.commander {
+.order {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color:#F7F7F7;
-    margin: auto;
+    margin: 0px;
 }
 
 .je-commande {
@@ -312,11 +318,10 @@ h3 {
     border-width: 0;
     box-shadow: 0px 4px 10px rgba(0,0,0,.25);
     background: linear-gradient(193.33deg, #9356DC -11.44%, #FF79DA 123.93%);
-    margin: 50px 150px;
+    margin: 25px 0px 40px 0px;
     padding: 13px 40px;
-    
     cursor: pointer;
-    opacity: 1;
+    
     transition: all 0.7s ease;
 }
 
@@ -346,6 +351,11 @@ footer {
     padding: 25px;
 }
 
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
 .ustensils,
 .handshake {
     display: flex;
@@ -371,7 +381,7 @@ footer {
 .handshake i {
     color: #FFFFFF;
     font-size: 13px; 
-    position: absolute;
+    position: absolute; /*calage des icones dans le footer*/
     left: 25px; 
 }
 
@@ -397,4 +407,90 @@ footer {
     margin: 0;
     padding-left: 25px;
     padding-bottom: 5px;
+}
+
+/*media-queries pour Tablette*/
+
+@media screen and (min-width:768px) and (max-width: 1023px){
+    
+    body {
+        max-width: 1023px;
+    }
+
+    header img {
+        width: 200px;
+    }
+
+    .card {
+        padding-left: 100px;
+        padding-right: 100px;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    .order {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    footer {
+        flex-direction: row-reverse;
+        align-items: center;
+        padding-top: 40px;
+    }
+
+    .links {
+        flex-direction: row;
+    }
+
+    .logo-white {
+        padding: 0px 50px;
+    }
+
+    .ustensils, .handshake, .legal, .contact {
+        padding-bottom: 0px;
+    }
+}
+
+/*media-queries pour desktop*/
+
+@media screen and (min-width: 1024px) and (max-width: 1400px) {
+
+    body {
+        max-width: 1400px;
+    }
+
+    header img {
+        width: 200px;
+    }
+
+    .card {
+        padding-left: 150px;
+        padding-right: 150px;
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+
+    .order {
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+    
+    footer {
+        flex-direction: row-reverse;
+        align-items: center;
+        padding-top: 40px;
+    }
+
+    .links {
+        flex-direction: row;
+    }
+
+    .logo-white {
+        padding: 0px 50px;
+    }
+
+    .ustensils, .handshake, .legal, .contact {
+        padding-bottom: 0px;
+    }
 }
