@@ -86,6 +86,7 @@ main {
     justify-content: space-between;
     align-items: flex-end;
     position: relative;
+    padding: 40px 17px 0px 17px;
 }
 
 h1 {
@@ -95,24 +96,22 @@ h1 {
     font-size: 28px;
     font-style: italic;
     font-weight: 400;
-    padding-top: 40px;
-    padding-left: 17px;
     margin: 0;
     width: fit-content;
 }
 
 .heart-white {
     position: absolute;
-    right: 41px;
+    right: 17px;
     top: 40px;
     cursor: pointer;
     z-index: 1;
 }
 
 .heart-colored {
-    position: absolute;
-    right: 41px;
-    bottom: 7px;
+    position: relative;
+    top: -5px;
+    left: 0;
     cursor: pointer;
     z-index: 2;
     opacity: 0; /*le coeur coloré est invisible au dessus du coeur blanc*/
@@ -134,6 +133,7 @@ h1 {
     padding: 0px 13px;
     margin:0;
     width: 100%;
+    box-sizing: border-box;
     opacity: 0;
     transform: scale(0);
 }
@@ -191,7 +191,7 @@ h2 {
     justify-content: flex-start;
     align-items: center;
     gap: 12px; 
-    width: 96%;
+    width: 100%;
 }
 
 h2::after { /*soulignage des titres h2, entrées etc, sur une longueur partielle de 40px*/
@@ -454,10 +454,10 @@ footer {
 
 /*media-queries pour desktop*/
 
-@media screen and (min-width: 1024px) and (max-width: 1400px) {
+@media screen and (min-width: 1024px) {
 
     body {
-        max-width: 1400px;
+        max-width: 100%;
     }
 
     header img {

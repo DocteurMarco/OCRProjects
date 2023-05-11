@@ -555,10 +555,10 @@ footer {
 
 /*media-queries pour desktop*/
 
-@media screen and (min-width: 1024px) and (max-width: 1400px) {
+@media screen and (min-width: 1024px) {
 
     body {
-        max-width: 1400px;
+        max-width: 100%;
     }
 
     header img {
